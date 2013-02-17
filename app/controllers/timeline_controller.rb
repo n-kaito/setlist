@@ -1,6 +1,6 @@
 # coding: utf-8
 class TimelineController < UserappController
   def index 
-    render :text => "hello world"
+    @msg = 'Hello world'
   end
 end
