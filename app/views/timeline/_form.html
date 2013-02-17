@@ -1,0 +1,17 @@
+<%= form_for @event,:url => {:action => :create_event} do |f| %>
+<% if @event.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@event.errors.count, "error") %>保存に失敗しました</h2>
+    <ul>
+      <% @book.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %> 
+<div class="field">
+  <%= f.text_field :name, :placeholder => '日付' %><br>
+  <%= f.text_field :name, :placeholder => 'イベント名' %><br>
+  <%= f.text_field :name, :placeholder => '場所' %><br>
+</div>
+<% end %>
