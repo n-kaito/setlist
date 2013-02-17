@@ -11,3 +11,8 @@
  *= require_self
  *= require_tree .
  */
+ 
+a.brand { font-family: "Anton"; }
+.mt50 {margin-top: 50px;}
+
+
