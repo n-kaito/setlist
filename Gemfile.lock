@@ -97,7 +97,7 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.7)
-    therubyracer (0.11.0)
+    therubyracer (0.11.3)
       ref
     thor (0.17.0)
     tilt (1.3.3)

@@ -13,5 +13,22 @@ class TimelineController < UserappController
     end
   end
   
+  def create_event
+    @event = Event.new(params[:event])
+    
+    respond_to do |format|
+      if @event.save
+        format.html {redirect_to '/timeline', notice: 'イベントを作成しました'}
+        format.json {render json: @event, status: 'created', location: @event}
+      else  
+        format.html {render action: 'new'}
+        format.json {render json: @event.errors, status: :unprocessable_entity}
+      end
+    end
+    
+    
+  end
+
+
   
 end

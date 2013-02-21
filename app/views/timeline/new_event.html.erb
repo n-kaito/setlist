@@ -1,10 +1,13 @@
 <h3>イベントを追加</h3>
-<%= render 'form' %>
+<%= form_for @event,:url => {:action => :create_event} do |f| %>
+  <%= render :partial => 'form', :locals =>{:f => f}  %>
 
-<%= link_to '/timeline', :class=>'btn btn-danger' do %>
-  <i class="icon-arrow-left"></i> キャンセル
-<% end %>
 
-<%= link_to '/timeline', :class=>'btn btn-primary' do %>
-  <i class="icon-pencil"></i> 作成
+  <%= link_to '/timeline', :class=>'btn btn-danger' do %>
+    <i class="icon-arrow-left"></i> キャンセル
+  <% end %>
+
+  <%= link_to '/timeline', :class=>'btn btn-primary' do %>
+    <i class="icon-pencil"></i> 作成
+  <% end %>
 <% end %>
