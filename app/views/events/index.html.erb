@@ -1,5 +1,9 @@
 <h1>Listing events</h1>
 
+<div class="btn-groupa">
+  <a class="btn btn-primary" href="/events/new"><i class="icon-plus"></i> イベントを追加</a>
+</div>
+
 <table>
   <tr>
     <th></th>
@@ -9,6 +13,9 @@
 
 <% @events.each do |event| %>
   <tr>
+    <td><%= event.open_at.strftime("%Y-%m-%d") %></td>
+    <td><%= event.name %></td>
+  
     <td><%= link_to 'Show', event %></td>
     <td><%= link_to 'Edit', edit_event_path(event) %></td>
     <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
