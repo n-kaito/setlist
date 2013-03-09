@@ -1,7 +1,9 @@
 <h1>Listing events</h1>
 
 <div class="btn-groupa">
-  <a class="btn btn-primary" href="/events/new"><i class="icon-plus"></i> イベントを追加</a>
+  <%= link_to new_event_path, class:'btn btn-primary' do %>
+    <i class="icon-plus"></i> イベントを追加</a>
+  <% end %>
 </div>
 
 <table>
@@ -13,6 +15,9 @@
 
 <% @events.each do |event| %>
   <tr>
+    <!--
+    <td><%= event.open_at %></td>
+    -->
     <td><%= event.open_at.strftime("%Y-%m-%d") %></td>
     <td><%= event.name %></td>
   
@@ -23,6 +28,3 @@
 <% end %>
 </table>
 
-<br />
-
-<%= link_to 'New Event', new_event_path %>

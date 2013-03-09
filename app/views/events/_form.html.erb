@@ -15,14 +15,11 @@
   <div class="actions">
     <%= f.text_field :open_at, :placeholder => '日付', :data => {:behaviour => 'datepicker'} %><br>
     <%= f.text_field :name, :placeholder => 'イベント名' %>
-    <a href="#ModaSchEvent" id="btn_sch_event" class="btn" data-toggle="modal" title="検索ボックスを開きます">
-      <i class="icon-search" ></i>
-    </a>
     <br>
     <%= text_field_tag('place_name', '', :placeholder => '場所') %>
-    <a href="#ModalSchPlace" id="btn_sch_place" class="btn" data-toggle="modal" title="検索ボックスを開きます">
+    <%= link_to '/events/search', class:'btn', title:'検索ボックスを開きます' do %>
       <i class="icon-search" ></i>
-    </a>
+    <% end %>
     <br>
     <%= f.hidden_field :place_id, :placeholder => '場所' %><br>
   
@@ -30,37 +27,4 @@
   </div>
   </fieldset>
 <% end %>
-
-<!-- Modal Search Event -->
-<div id="ModaSchEvent" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Modal header</h3>
-  </div>
-  <div class="modal-body">
-    <p>One fine body…</p>
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button class="btn btn-primary">Save changes</button>
-  </div>
-</div>
-<!-- /Modal Search Event -->
-
-<!-- Modal Search place -->
-<div id="ModalSchPlace" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Modal header</h3>
-  </div>
-  <div class="modal-body">
-    <p>One fine body…</p>
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button class="btn btn-primary">Save changes</button>
-  </div>
-</div>
-<!-- /Modal Search Event -->
-
 
