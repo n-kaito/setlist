@@ -2,20 +2,24 @@
 
 <div>
   <%= form_tag '/places/search', method:'post' do %>
-   <%= text_field_tag :name, '', placeholder: "場所" %>
+   <%= text_field_tag :name, @place_name, placeholder: "場所" %>
     <%= submit_tag "検索" %>
   <% end %>
 </div>
 
+<% if @places %>
 <table>
 
-<% @places.each do |place| %>
+  <% @places.each do |place| %>
   <tr>
     <td><%= place.name %></td>
     <td><%= link_to '選択', place %></td>
   </tr>
-<% end %>
+  <% end %>
 </table>
+<% else %>
+<p>該当する場所がありません</p>
+<% end %>
 
 <br />
 
