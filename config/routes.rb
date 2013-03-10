@@ -1,5 +1,12 @@
 Setlist::Application.routes.draw do
-  resources :events
+  resources :places
+
+
+  resources :events do
+    member do
+      post 'search'
+    end
+  end
 
 
   # The priority is based upon order of creation:

@@ -15,9 +15,6 @@
 
 <% @events.each do |event| %>
   <tr>
-    <!--
-    <td><%= event.open_at %></td>
-    -->
     <td><%= event.open_at.strftime("%Y-%m-%d") %></td>
     <td><%= event.name %></td>
   
