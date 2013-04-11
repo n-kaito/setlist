@@ -26,6 +26,14 @@ class PlacesController < ApplicationController
     end
   end
 
+  # イベントからの場所検索
+  # POST /places/for_find
+  def for_find
+    reset_session
+    session[:event] = params[:event] if params[:event]
+    redirect_to action: 'index'
+  end
+
 
   # GET /places/1
   # GET /places/1.json

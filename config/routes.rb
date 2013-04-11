@@ -1,6 +1,6 @@
 Setlist::Application.routes.draw do
   resources :places
-
+  match 'places/for_find' => 'places#for_find', :via => :post
 
   resources :events do
     member do
