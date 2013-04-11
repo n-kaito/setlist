@@ -8,14 +8,14 @@
 </div>
 
 <table>
-
 <% @places.each do |place| %>
   <tr>
     <td><%= place.name %></td>
-    <td><%= link_to '選択', place %></td>
+    <td><%= link_to '選択', :controller => 'events', :action => 'new', :place => place.id %></td>
   </tr>
 <% end %>
 </table>
+
 
 <br />
 

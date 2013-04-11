@@ -16,7 +16,13 @@
     <%= f.text_field :open_at, :placeholder => '日付', :data => {:behaviour => 'datepicker'} %><br>
     <%= f.text_field :name, :placeholder => 'イベント名' %>
     <br>
-    <%= text_field_tag('place_name', '', :placeholder => '場所') %>
+    <p style="float:left;">
+      <% if @place_name %>
+        <%= @place_name %>
+      <% else %>
+        検索＆選択してください
+      <% end %>
+    </p>&nbsp;
     <%= link_to '#', class:'btn', id:'js-link-search-place-from-event', title:'検索ボックスを開きます' do %>
       <i class="icon-search" ></i>
     <% end %>

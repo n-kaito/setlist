@@ -10,14 +10,12 @@ class PlacesController < ApplicationController
     end
   end
 
-  # POST /places
-  # POST /places.json
+  # POST /places/search
+  # POST /places/search.json
   def search
   
     if(params[:name])
       @places = Place.limit(20).order('id').where("name LIKE ?", "%#{params[:name]}%")
-      
-      
     end
 
     respond_to do |format|
@@ -31,7 +29,7 @@ class PlacesController < ApplicationController
   def for_find
     reset_session
     session[:event] = params[:event] if params[:event]
-    redirect_to action: 'index'
+    redirect_to action: 'search'
   end
 
 

@@ -1,3 +1,4 @@
+# coding: utf-8
 class EventsController < ApplicationController
   # GET /events
   # GET /events.json
@@ -25,7 +26,21 @@ class EventsController < ApplicationController
   # GET /events/new.json
   def new
     @event = Event.new
-    @event['open_datetime'] = Time.now.year
+    
+    #場所選択からの遷移の場合
+    if session[:event]
+      @event['open_at'] = session[:event][:open_at]
+      @event['name']    = session[:event][:name]
+    end
+    
+    if params[:place] && params[:place].to_i > 0
+      
+      if place = Place.find(params[:place])
+        @event['place_id'] = params[:place]
+        @place_name = place.name
+      end
+    end
+    
 
     respond_to do |format|
       format.html # new.html.erb
