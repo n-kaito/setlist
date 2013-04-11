@@ -13,8 +13,9 @@ class PlacesController < ApplicationController
   # POST /places/search
   # POST /places/search.json
   def search
-  
-    if(params[:name])
+    @place_name = params[:name] ? params[:name] : ''
+
+    unless @place_name.blank?
       @places = Place.limit(20).order('id').where("name LIKE ?", "%#{params[:name]}%")
     end
 
