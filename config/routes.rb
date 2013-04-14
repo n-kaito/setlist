@@ -1,10 +1,8 @@
 Setlist::Application.routes.draw do
-  resources :places do
-    member do
-      post 'for_find'
-    end
-  end
+  match "/places/search"   => "places#search"
+  match "/places/for_find" => "places#for_find"
   resources :places
+  resources :events
 
 
   # The priority is based upon order of creation:

@@ -6,8 +6,9 @@ $ ->
     initialize:->
     
     goto_search_place_from_event:(evt) ->
-      $('form.new_event').attr('action', '/places/for_find')
-      $('form.new_event').submit()
+      $form_event = $('form.form_event')
+      $form_event.attr('action', '/places/for_find')
+      $form_event.submit()
       false
     
   todo_view = new EventView(el:'.js-event-form')

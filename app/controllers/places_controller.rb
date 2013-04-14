@@ -14,7 +14,7 @@ class PlacesController < ApplicationController
   # POST /places/search.json
   def search
     @place_name = params[:name] ? params[:name] : ''
-
+    @event_id   = session[:event_id] ? session[:event_id] : ''
     unless @place_name.blank?
       @places = Place.limit(20).order('id').where("name LIKE ?", "%#{params[:name]}%")
     end
@@ -29,7 +29,10 @@ class PlacesController < ApplicationController
   # POST /places/for_find
   def for_find
     reset_session
-    session[:event] = params[:event] if params[:event]
+    if params[:event]
+      session[:event]    = params[:event]
+      session[:event_id] = params[:event_id]
+    end
     redirect_to action: 'search'
   end
 
@@ -49,7 +52,6 @@ class PlacesController < ApplicationController
   # GET /places/new.json
   def new
     @place = Place.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @place }
@@ -58,7 +60,7 @@ class PlacesController < ApplicationController
 
   # GET /places/1/edit
   def edit
-    @place = Place.find(params[:id])
+    @action = params[:action]
   end
 
   # POST /places

@@ -25,7 +25,8 @@ class EventsController < ApplicationController
   # GET /events/new
   # GET /events/new.json
   def new
-    @event = Event.new
+    @event  = Event.new
+    @action = params[:action]
     
     #場所選択からの遷移の場合
     if session[:event]
@@ -34,10 +35,9 @@ class EventsController < ApplicationController
     end
     
     if params[:place] && params[:place].to_i > 0
-      
-      if place = Place.find(params[:place])
+      if @place = Place.find(params[:place])
         @event['place_id'] = params[:place]
-        @place_name = place.name
+        @place_name = @place.name
       end
     end
     
@@ -50,7 +50,9 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
-    @event = Event.find(params[:id])
+    @action = params[:action]
+    @event  = Event.find(params[:id])
+    @place  = Place.find(@event['place_id'])
   end
 
   # POST /events

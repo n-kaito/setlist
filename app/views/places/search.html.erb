@@ -12,8 +12,11 @@
 <% @places.each do |place| %>
   <tr>
     <td><%= place.name %></td>
-    <td><%= link_to '選択', :controller => 'events', :action => 'new', :place => place.id %></td>
-  </tr>
+    <td>
+      <% url_action = @event_id.to_i > 0 ? @event_id.to_s + "/edit" : 'new' %>
+      <%= link_to '選択', :controller => 'events', :action => url_action, :place => place.id %>
+    </td>
+  </tr>011
   <% end %>
 </table>
 <% else %>
