@@ -1,6 +1,7 @@
 Setlist::Application.routes.draw do
   match "/places/search"   => "places#search"
   match "/places/for_find" => "places#for_find"
+  match "/api/artists"     => "api#artists"
   resources :places
   resources :events
 
