@@ -1,18 +1,47 @@
+<div class="js-event-detail">
 <p id="notice"><%= notice %></p>
 
 <h2><%= @event.name %></h2>
-<%= @event.open_at.strftime("%Y-%m-%d") %><br>
+<%= @event.open_at.strftime("%Y-%m-%d(%a)") %><br>
 @ <%= @event.place.name %><br>
 <br>
 
-<%= link_to '#', class: 'btn btn-success' do %>
-  <i class="icon-plus"></i>	曲を追加</a>
-<% end %> |
-<%= link_to edit_event_path(@event), class: 'btn btn-info' do %>
-  <i class="icon-edit"></i> イベントを編集</a>
-<% end %> |
-<%= link_to events_path, class: 'btn btn-danger' do %>
-  <i class="icon-chevron-left"></i> 戻る</a>
-<% end %>
-<br>
+<!-- buttons -->
+<div>
+	<%= link_to '#new-song', class: 'btn btn-success', id: 'js-new-song' do %>
+	  <i class="icon-plus"></i>	曲を追加</a>
+	<% end %> |
+	<%= link_to edit_event_path(@event), class: 'btn btn-info' do %>
+	  <i class="icon-edit"></i> イベントを編集</a>
+	<% end %> |
+	<%= link_to events_path, class: 'btn btn-danger' do %>
+	  <i class="icon-chevron-left"></i> 戻る</a>
+	<% end %>
+</div>
+<!-- /buttons -->
 
+<!-- songs-->
+<div class="mt10">
+	<ol style="list-style:none;">
+		<li>
+			<p class="span2">first love</p>
+			<p>宇多田ヒカル</p>
+		</li>
+	</ol>
+</div>
+<!-- /songs-->
+
+<!-- new song-->
+<div class="mt10" id="new-song">
+	<%= text_field_tag :artist, '', class:'js-artist', placeholder:'アーティスト名' %><br>
+	<%= text_field_tag :song, '', class:'js-track', placeholder:'曲名' %>
+	<%= link_to 'POST', '#', class: 'btn btn-success', id: 'js-add-song' %>
+</div>
+<!-- /new song-->
+
+<!-- artist list -->
+<div class="js-artist-list">
+<div>
+<!-- artist list -->
+
+</div>
