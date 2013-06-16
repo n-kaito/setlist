@@ -19,6 +19,8 @@ class ApiController < UserappController
 		artists.push({'artist_name' => results['artistName']})
 	end
 
+	#artists = {'aaa' => 'nnn'}	
+
   	render :json => artists
 
   end
