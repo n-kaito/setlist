@@ -16,7 +16,8 @@ class ApiController < UserappController
 
 	artists = []
 	parsed['results'].each do |results|
-		artists.push({'artist_name' => results['artistName']})
+		#artists.push({'artist_name' => results['artistName']})
+		artists.push results['artistName']
 	end
 
 	#artists = {'aaa' => 'nnn'}	
