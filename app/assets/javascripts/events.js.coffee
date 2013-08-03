@@ -12,7 +12,7 @@ $ ->
       false
 
   event_view = new EventView
-          
+
   #----------------------
   # view of "artist" 
   #----------------------
@@ -24,23 +24,35 @@ $ ->
 
     initialize: (options) =>
       @$text_artist = $('input.js-text-artist')
-      options = ['kaito', 'world']
       @$text_artist.typeahead({
         source: (query, process) =>
-          $.get 'http://' + location.host + '/api/artists', {term: query}, (data)=>
+          $.get 'http://' + location.host + '/api/artist', {term: query}, (data)=>
             process data
-
       })
 
   #----------------------
-  # model of "song" 
+  # view of "track" 
   #----------------------
-  #class Song extends Backbone.Model
+  class TrackView extends Backbone.View
+    el: '.js-track-area'
 
-  #---------------------------
-  # collection of "song list"
-  #---------------------------
-  #class SongList extends Backbone.Collection
+    #DOM
+    @$text_artist: null
+
+    initialize: (options) =>
+      @$text_track  = $('input.js-text-track')
+      @$text_artist = $('input.js-text-artist')
+      @$text_track.typeahead({
+        source: (query, process) =>
+          # アーティストを入れていないとアラート表示
+          if _.string.trim(@$text_artist.val()) == ''            
+            alert '最初にアーティスト名を入力してください'
+            @$text_track.val('')
+            return false
+
+          $.get 'http://' + location.host + '/api/track', {term: query + '+' + @$text_artist.val()}, (data)=>
+            process data
+      })
   
   #---------------------------
   # view of "setlist view"
@@ -58,4 +70,5 @@ $ ->
     #  artistView.fetch_artists()
 
   artistView  = new ArtistView
+  trackView   = new TrackView
   setlistView = new SetlistView

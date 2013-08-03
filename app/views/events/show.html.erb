@@ -33,14 +33,14 @@
 
 <!-- new song-->
 <div class="mt10" id="new-song">
-	<input id="typeahead-1" type="text" data-provide="typeahead" data-source='["hello","world"]' />
 	<div class="js-artist-area">
 		<%= text_field_tag :artist, '', 
 			class:'js-text-artist', placeholder:'アーティスト名', 
 			data: {provide:'typeahead'} %>
 	</div>
 	<div class="js-track-area">
-		<%= text_field_tag :song, '', class:'js-text-track', placeholder:'曲名' %>
+		<%= text_field_tag :track, '', 
+			class:'js-text-track', placeholder:'曲名' %>
 	</div>
 	<%= link_to 'POST', '#', class: 'btn btn-success', id: 'js-add-song' %>
 </div>

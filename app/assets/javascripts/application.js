@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require underscore-min
+//= require underscore.string.min
 //= require backbone-min
 //= require twitter/bootstrap
 //= require bootstrap-datepicker/core
