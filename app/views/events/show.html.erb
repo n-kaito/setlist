@@ -8,7 +8,7 @@
 
 <!-- buttons -->
 <div>
-	<%= link_to '#new-song', class: 'btn btn-success', id: 'js-new-song' do %>
+	<%= link_to '#new-song', class: 'btn btn-success' do %>
 	  <i class="icon-plus"></i>	曲を追加</a>
 	<% end %> |
 	<%= link_to edit_event_path(@event), class: 'btn btn-info' do %>
@@ -21,8 +21,8 @@
 <!-- /buttons -->
 
 <!-- songs-->
-<div class="mt10">
-	<ol style="list-style:none;">
+<div class="mt10 js-songs-listbox">
+	<ol>
 		<li>
 			<p class="span2">first love</p>
 			<p>宇多田ヒカル</p>
@@ -32,7 +32,7 @@
 <!-- /songs-->
 
 <!-- new song-->
-<div class="mt10" id="new-song">
+<div class="mt10 js-new-song">
 	<div class="js-artist-area">
 		<%= text_field_tag :artist, '', 
 			class:'js-text-artist', placeholder:'アーティスト名', 
@@ -42,8 +42,18 @@
 		<%= text_field_tag :track, '', 
 			class:'js-text-track', placeholder:'曲名' %>
 	</div>
-	<%= link_to 'POST', '#', class: 'btn btn-success', id: 'js-add-song' %>
+	<%= link_to 'POST', '#', class: 'btn btn-success js-add-song' %>
 </div>
 <!-- /new song-->
 
 </div>
+
+<!-- template -->
+<script type="text/html" id="js-song-content">
+	<li><p class="span2"><%%= track %></p></li>
+	<li><p><%%= artist %></p></li>
+</script>
+<!-- /template -->
+
+
+

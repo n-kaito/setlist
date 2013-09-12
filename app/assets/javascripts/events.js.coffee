@@ -1,11 +1,14 @@
 $ ->
+  #----------------------------
+  # view of "EventView" 
+  #----------------------------
   class EventView extends Backbone.View
     el: '.js-event-form'
     events: 
       'click #js-link-search-place-from-event':'goto_search_place_from_event'
     initialize:->
     #goto search place page
-    goto_search_place_from_event:(evt) ->
+    goto_search_place_from_event:(evt) =>
       $form_event = $('form.form_event')
       $form_event.attr('action', '/places/for_find')
       $form_event.submit()
@@ -13,16 +16,36 @@ $ ->
 
   event_view = new EventView
 
-  #----------------------
-  # view of "artist" 
-  #----------------------
-  class ArtistView extends Backbone.View
-    el: '.js-artist-area'
+  #----------------------------
+  # model of "Song" 
+  #----------------------------
+  class Song extends Backbone.Model
+
+  #----------------------------
+  # collection of "SongList" 
+  #----------------------------
+  class Songs extends Backbone.Collection
+    model: Song
+
+  #----------------------------
+  # view of "New Song" 
+  #----------------------------
+  class NewSongView extends Backbone.View
+    el: '.js-new-song'
+    model: Song
+    collection: Songs
 
     #DOM
     @$text_artist: null
+    @$text_track: null
+
+    events: 
+      'click .js-add-song':'add_song'
 
     initialize: (options) =>
+      @songs_listbox = $('.js-songs-listbox').find('ol')
+
+      #アーティストにtypeaheadを追加
       @$text_artist = $('input.js-text-artist')
       @$text_artist.typeahead({
         source: (query, process) =>
@@ -30,18 +53,8 @@ $ ->
             process data
       })
 
-  #----------------------
-  # view of "track" 
-  #----------------------
-  class TrackView extends Backbone.View
-    el: '.js-track-area'
-
-    #DOM
-    @$text_artist: null
-
-    initialize: (options) =>
-      @$text_track  = $('input.js-text-track')
-      @$text_artist = $('input.js-text-artist')
+      #Trackにtypeaheadを追加
+      @$text_track = $('input.js-text-track')
       @$text_track.typeahead({
         source: (query, process) =>
           # アーティストを入れていないとアラート表示
@@ -53,22 +66,13 @@ $ ->
           $.get 'http://' + location.host + '/api/track', {term: query + '+' + @$text_artist.val()}, (data)=>
             process data
       })
-  
-  #---------------------------
-  # view of "setlist view"
-  #---------------------------
-  class SetlistView extends Backbone.View
-    el: ".js-event-detail"
-    #events: 
-      #'click #js-add-song' : 'add_song'
-      #'keydown .js-text-artist' : 'search_artist'
+    add_song:(evt) =>
+      html = _.template($('#js-song-content').html(), {artist: @$text_artist.val(), track: @$text_track.val()})
+      @songs_listbox.append(html)
 
-    #add_song:(evt) ->
-    #  alert 'aaa'
 
-    #search_artist:(evt) ->
-    #  artistView.fetch_artists()
+      return false
 
-  artistView  = new ArtistView
-  trackView   = new TrackView
-  setlistView = new SetlistView
+
+
+  newSongView   = new NewSongView

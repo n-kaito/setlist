@@ -1,4 +1,9 @@
 Setlist::Application.routes.draw do
+  resources :songs
+
+
+  get "songs/new"
+
   match "/places/search"   => "places#search"
   match "/places/for_find" => "places#for_find"
   match "/api/artists"     => "api#artists"

@@ -17,4 +17,8 @@ a.brand { font-family: "Anton"; }
 .mt10 {margin-top: 30px;}
 .mt50 {margin-top: 50px;}
 
+ol, ul, li {
+	list-style: none;
+}
+
 
